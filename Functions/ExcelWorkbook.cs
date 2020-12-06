@@ -52,10 +52,17 @@ namespace DataCompare.Functions
         // TODO fill getCellValue()
         public string getCellValue(int i, int j)
         {
-            Excel.Range range = (xlWorksheet.Cells[i, j] as Excel.Range);
-            string cellValue = range.Value.ToString();
+            if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null)
+            {
+                Excel.Range range = (xlWorksheet.Cells[i, j] as Excel.Range);
+                string cellValue = range.Value.ToString();
+                return cellValue;
+            }else
+            {
+                return "";
+            }
 
-            return cellValue;
+            
         }
 
     }

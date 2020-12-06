@@ -9,8 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataCompare.NAIDParser;
-
-
+using DataCompare.ApprovalParser;
+using System.Runtime.InteropServices;
 
 namespace DataCompare
 {
@@ -24,19 +24,39 @@ namespace DataCompare
 
             homedir = "C:\\Users\\pborugadda\\Documents\\Vale\\";
             hanaSheetLocation = homedir + "KPI_EXTRACT_FULL_V4 24th Nov 2020.txt";
-            approvalSheetLocation = homedir + "Approval_Extract_2020_Nov_19.xlsx";
-            naidSheetLocation = homedir + "2020.Nov.18 NA Integrated Dashboard.xlsm"; 
+            approvalSheetLocation = homedir + "Approval_Extract_2020_Jan_Nov.xlsx";
+            naidSheetLocation = homedir + "2020.Nov.18 NA Integrated Dashboard.xlsm";
 
-            string approvalfileContent = Helpers.ReadFileContent(approvalSheetLocation);
-            //List <Approval> approvalData = new List<Approval>();
-            //CsvHelper appData = new CsvHelper(approvalfileContent, "/t");
-            //approvalData = appDataParser.GetData(approvalfileContent);
+
 
             //##################################################################################################
             //Reading Approval extract sheet
 
+            DataParser dataParser1 = new DataParser();
+            List <Approval> approvalData = new List<Approval>();            
+            approvalData = dataParser1.ReadValues(approvalSheetLocation);
 
+            string[] mineNamesApproval = { "COLEMAN MINE", "COPPER CLIFF MINE", "CREIGHTON MINE", "GARSON MINE", "OVOID MINE", "THOMPSON MINE", "TOTTEN MINE" };
+            Double[] dimOMKeys = { 14046, 14048, 14047, 14049, 77580, 77428, 14050 };
+            string fromDateApp = "2020-11-01";
+            string toDateApp = "2020-11-16";
+            string yearStartDateApp = "2020-01-01";
+            int i = 0;
+            Console.WriteLine("**** Approval Data ****");
 
+            foreach (string mineNameApp in mineNamesApproval)
+            {                
+                int dayValueApp = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(toDateApp), Convert.ToDateTime(toDateApp));
+                Console.WriteLine(toDateApp + ": " + mineNameApp.ToString() + " Day Value: " + dayValueApp);
+
+                int monthToDateValueApp = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDateApp), Convert.ToDateTime(toDateApp));
+                Console.WriteLine(fromDateApp + " to " + toDateApp + ": " + mineNameApp.ToString() + " Month to Date Value: " + monthToDateValueApp);
+
+                int yearToDateValueApp = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDateApp), Convert.ToDateTime(toDateApp));
+                Console.WriteLine(yearStartDateApp + " to " + toDateApp + ": " + mineNameApp.ToString() + " Year to Date Value: " + yearToDateValueApp);
+                Console.WriteLine("\n");
+                i++;
+            }
 
             //##################################################################################################
             //Reading NAID Dashboard sheet
@@ -49,6 +69,7 @@ namespace DataCompare
             naid.createMine("GARSON", 20);
             naid.createMine("TOTTEN", 22);
             naid.createMine("MANITOBA", 24);
+            Console.WriteLine("**** NAID Data ****");
 
             string[] minenamesNAID = { "COLEMAN", "COPPER CLIFF", "CREIGHTON", "GARSON", "TOTTEN", "MANITOBA" };
             foreach (string mineNaid in minenamesNAID)
@@ -71,12 +92,13 @@ namespace DataCompare
             Parser dataParser = new Parser();
             data = dataParser.GetData(fileContent);
 
-            string[] minenames = { "COLEMAN MINE", "COPPER CLIFF MINE", "CREIGHTON MINE", "GARSON MINE", "OVOID MINE", "THOMPSON MINE", "TOTTEN MINE" };
+            string[] minenamesHANA = { "COLEMAN MINE", "COPPER CLIFF MINE", "CREIGHTON MINE", "GARSON MINE", "OVOID MINE", "THOMPSON MINE", "TOTTEN MINE" };
             string fromDate = "2020-11-01";
             string toDate = "2020-11-16";
             string yearStartDate = "2020-01-01";
+            Console.WriteLine("**** HANA Data ****");
 
-            foreach (string mineHana in minenames)
+            foreach (string mineHana in minenamesHANA)
             {       
                 int dayValue = Helpers.SumOfValues(data, 1.3, mineHana, "ACTUAL", Convert.ToDateTime(toDate), Convert.ToDateTime(toDate));
                 Console.WriteLine(toDate + ": " + mineHana.ToString() + " Day Value: " + dayValue);
@@ -90,6 +112,7 @@ namespace DataCompare
             }
             
             Console.Read();
+            
         }
 
     }

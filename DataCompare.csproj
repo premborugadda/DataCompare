@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApprovalParser\Approval.cs" />
+    <Compile Include="ApprovalParser\DataParser.cs" />
     <Compile Include="NAIDParser\Costs.cs" />
     <Compile Include="Functions\CsvHelper.cs" />
     <Compile Include="NAIDParser\Env.cs" />
