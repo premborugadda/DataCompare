@@ -30,5 +30,7 @@ namespace DataCompare.Functions
             var test1 = data.Where(x => x.DimOperationalMeasureKey.Equals(dimOMKey) && x.CalendarDate >= fromDate && x.CalendarDate<= toDate).ToList();            
             return test1.Select(y => Convert.ToInt32(y.RevisedVoulmeDry)).Sum(); ;
         }
+
+        
     }
 }
