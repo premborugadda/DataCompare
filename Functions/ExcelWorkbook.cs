@@ -20,7 +20,11 @@ namespace DataCompare.Functions
         {
             WorkbookPath = workbookPath;
 
-            xlApp = new Excel.Application();
+            xlApp = new Excel.Application()
+            {
+                Visible = false                
+            };
+            xlApp.UserControl = false;
             xlWorkbook = openWorkbook();
             xlWorksheet = openSheet(1);
             xlRange = getRange();
@@ -31,7 +35,7 @@ namespace DataCompare.Functions
         // TODO fill openWorkbook()
         public Excel.Workbook openWorkbook()
         {
-            return xlApp.Workbooks.Open(WorkbookPath);
+            return xlApp.Workbooks.Open(WorkbookPath, ReadOnly: false);
         }
 
         // TODO fill closeWorkbook()
@@ -62,11 +66,10 @@ namespace DataCompare.Functions
             }else
             {
                 return "";
-            }
-
-            
+            }            
         }
 
+        
     }
 }
 

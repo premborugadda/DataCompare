@@ -9,8 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataCompare.NAIDParser;
-using DataCompare.ApprovalParser;
 using System.Runtime.InteropServices;
+using DataCompare.Report;
+using DataCompare.BudgetParser;
+
 
 namespace DataCompare
 {
@@ -19,15 +21,38 @@ namespace DataCompare
 
         public static void Main(string[] args)
         {
-            string homedir, hanaSheetLocation, approvalSheetLocation, naidSheetLocation;            
+            string homedir, hanaSheetLocation, approvalSheetLocation, 
+                naidSheetLocation, resultSheet, budgetSheetLoctation;            
             char[] delimiter = { '\t' };
 
             homedir = "C:\\Users\\pborugadda\\Documents\\Vale\\";
             hanaSheetLocation = homedir + "KPI_EXTRACT_FULL_V4 24th Nov 2020.txt";
             approvalSheetLocation = homedir + "Approval_Extract_2020_Jan_Nov.xlsx";
             naidSheetLocation = homedir + "2020.Nov.18 NA Integrated Dashboard.xlsm";
+            budgetSheetLoctation = homedir + "2020 BM Production Budget - R4V2.xlsx";
+            resultSheet = homedir + "Test.csv";
+
+            Functions.Helpers.KillExcel();
+
+            //var objReport = new Report.Report();
+            //objReport.ReportDouble(resultSheet, 1, 1, 1, 0, "test");
 
 
+            //##################################################################################################
+            //Reading Budget sheet
+            
+            Console.WriteLine("**** Budget Data ****");
+            dataParse dt = new dataParse();
+            List<Budget> budgetData = new List<Budget>();
+            budgetData = dt.GetValues(budgetSheetLoctation);            
+            string[] mineNamesBudget = { "Copper Cliff North", "Creighton", "Garson", "Coleman", "Gertrude", "Ellen", "Stobie", "Totten", "Garson Ramp", "OB & CCM Extra" };
+            foreach (string mineNameBud in mineNamesBudget)
+            {
+                double BudValue = Helpers.BudgetMineValue(budgetData, mineNameBud, 11);
+                string month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(11);
+                Console.WriteLine(mineNameBud + ": Budget value for the month of " + month + " is " + BudValue);
+            }
+            Console.WriteLine("\n");
 
             //##################################################################################################
             //Reading Approval extract sheet

@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="ApprovalParser\Approval.cs" />
     <Compile Include="ApprovalParser\DataParser.cs" />
+    <Compile Include="BudgetParser\Budget.cs" />
+    <Compile Include="BudgetParser\dataParse.cs" />
     <Compile Include="NAIDParser\Costs.cs" />
     <Compile Include="Functions\CsvHelper.cs" />
     <Compile Include="NAIDParser\Env.cs" />

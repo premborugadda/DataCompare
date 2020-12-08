@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataCompare.ApprovalParser;
+using DataCompare.BudgetParser;
 using DataCompare.HanaParser;
 
 namespace DataCompare.Functions
@@ -31,6 +34,22 @@ namespace DataCompare.Functions
             return test1.Select(y => Convert.ToInt32(y.RevisedVoulmeDry)).Sum(); ;
         }
 
-        
+        public static Double BudgetMineValue(this List<Budget> data, string mineName, int month)
+        {            
+            string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            var test1 = data.Where(x => x.mineName.Equals(mineName) && x.budgetMonth.ToLower().Equals(monthName.ToLower())).ToList();
+            return test1.Select(y => Convert.ToDouble(y.budgetValue)).First();
+        }
+        public static void KillExcel()
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.Equals("EXCEL"))
+                {
+                    clsProcess.Kill();                    
+                    //break;                    
+                }
+            }
+        }
     }
 }
