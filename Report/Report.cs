@@ -23,17 +23,23 @@ namespace DataCompare.Report
             var colCount = wb.xlRange.Columns.Count;
 
             Excel.Range range = (xlWorksheet.Cells[i, j] as Excel.Range);
-            if (Value1 != null)
+            if (Value1 != 0)
             {
                 range.Value = Value1;
             }
-            else
+            else if (Value2 != "")
             {
                 range.Value = Value2;
             }
+            else
+            {
+                range.Value = null;
+            }
             
-            xlWorksheet.SaveAs(SheetLoc, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
+            //xlWorksheet.SaveAs(SheetLoc, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
 
+            xlWorksheet.SaveAs(SheetLoc, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);                       
+            
             wb.closeWorkbook();
             ReleaseObject(xlWorksheet);
         }

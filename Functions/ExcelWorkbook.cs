@@ -28,6 +28,7 @@ namespace DataCompare.Functions
             xlWorkbook = openWorkbook();
             xlWorksheet = openSheet(1);
             xlRange = getRange();
+            xlApp.DisplayAlerts = false;
         }
 
         public string WorkbookPath { get; }
@@ -35,13 +36,20 @@ namespace DataCompare.Functions
         // TODO fill openWorkbook()
         public Excel.Workbook openWorkbook()
         {
-            return xlApp.Workbooks.Open(WorkbookPath, ReadOnly: false);
+            return xlApp.Workbooks.Open(WorkbookPath, ReadOnly: false);            
+        }
+
+        public Excel.Workbook openWorkbookWrite(string filePath)
+        {
+            return xlApp.Workbooks.Open(filePath, 0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
+        true, false, 0, true, false, false);
         }
 
         // TODO fill closeWorkbook()
         public void closeWorkbook()
         {
             xlApp.Workbooks.Close();
+            xlApp.Quit();
         }
 
         // TODO fill openSheet()
