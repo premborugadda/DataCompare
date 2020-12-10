@@ -88,7 +88,7 @@ namespace DataCompare.Report
         }
 
 
-        public void writeData(string SheetLoc, List<Result> resMines)
+        public void writeData(string SheetLoc, string mineName, List<Result> resMines)
         {
             wb = new ExcelWorkbook(SheetLoc);
             var xlWorksheet = wb.openSheet(2);
@@ -96,6 +96,10 @@ namespace DataCompare.Report
             var rowCount = wb.xlRange.Rows.Count;
             var colCount = wb.xlRange.Columns.Count;
             string[] mineNames = { "COLEMAN MINE", "COPPER CLIFF MINE", "CREIGHTON MINE", "GARSON MINE", "OVOID MINE", "THOMPSON MINE", "TOTTEN MINE" };
+            //foreach (string minename in mineNames)
+            //{
+            //    resMines = this.getResMine(mineName);
+            //}
             int iCount = resMines.Count(); 
             int intRow = 3;
 
@@ -126,7 +130,10 @@ namespace DataCompare.Report
                 xlWorksheet.Cells[intRow, 30] = resMines[i].Budget.HanaYear;
                 xlWorksheet.Cells[intRow, 31] = resMines[i].Budget.NaidYear;
                 xlWorksheet.Cells[intRow, 32] = "";
-                
+
+                intRow++;
+
+
             }
 
 
