@@ -84,7 +84,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NAIDParser\Risk.cs" />
     <Compile Include="NAIDParser\Safety.cs" />
+    <Compile Include="Report\Actual.cs" />
+    <Compile Include="Report\BudgetValues.cs" />
     <Compile Include="Report\Report.cs" />
+    <Compile Include="Report\Result.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

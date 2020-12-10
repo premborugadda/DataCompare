@@ -10,9 +10,34 @@ using Microsoft.Office.Interop.Excel;
 
 namespace DataCompare.Report
 {
-   class Report
+    class Report
     {
         private ExcelWorkbook wb;
+        private List<Result> resMines;
+        private Result r;
+
+        public Report()
+        {            
+            this.resMines = new List<Result>();            
+        }
+
+        public void createResMine(string mineName, int indexColumn)
+        {
+            try
+            {
+                r = new Result(mineName);
+                
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+        public Result getResMine(string mineName)
+        {
+            return resMines.Find(mine => mine.ResMineName == mineName);
+        }
 
         public void ReportDouble(string SheetLoc, int Sheetindex, int i, int j, double? Value1, string Value2)
         {
@@ -35,11 +60,11 @@ namespace DataCompare.Report
             {
                 range.Value = null;
             }
-            
+
             //xlWorksheet.SaveAs(SheetLoc, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, false, false, XlSaveAsAccessMode.xlNoChange, XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
 
-            xlWorksheet.SaveAs(SheetLoc, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);                       
-            
+            xlWorksheet.SaveAs(SheetLoc, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+
             wb.closeWorkbook();
             ReleaseObject(xlWorksheet);
         }
@@ -62,10 +87,55 @@ namespace DataCompare.Report
             }
         }
 
+
+        public void writeData(string SheetLoc, List<Result> resMines)
+        {
+            wb = new ExcelWorkbook(SheetLoc);
+            var xlWorksheet = wb.openSheet(2);
+            var xlRange = wb.xlRange;
+            var rowCount = wb.xlRange.Rows.Count;
+            var colCount = wb.xlRange.Columns.Count;
+            string[] mineNames = { "COLEMAN MINE", "COPPER CLIFF MINE", "CREIGHTON MINE", "GARSON MINE", "OVOID MINE", "THOMPSON MINE", "TOTTEN MINE" };
+            int iCount = resMines.Count(); 
+            int intRow = 3;
+
+            for (int i = 0; i < iCount; i++)
+            {
+                xlWorksheet.Cells[intRow, 9] = resMines[i].Actual.AppDay;
+                xlWorksheet.Cells[intRow, 10] = resMines[i].Actual.HanaDay;
+                xlWorksheet.Cells[intRow, 11] = resMines[i].Actual.NaidDay;
+                xlWorksheet.Cells[intRow, 12] = "";
+                xlWorksheet.Cells[intRow, 13] = resMines[i].Actual.AppMon;
+                xlWorksheet.Cells[intRow, 14] = resMines[i].Actual.HanaMon;
+                xlWorksheet.Cells[intRow, 15] = resMines[i].Actual.NaidMon;
+                xlWorksheet.Cells[intRow, 16] = "";
+                xlWorksheet.Cells[intRow, 17] = resMines[i].Actual.AppYear;
+                xlWorksheet.Cells[intRow, 18] = resMines[i].Actual.HanaYear;
+                xlWorksheet.Cells[intRow, 19] = resMines[i].Actual.NaidYear;
+                xlWorksheet.Cells[intRow, 20] = "";
+                
+                xlWorksheet.Cells[intRow, 21] = resMines[i].Budget.AppDay;                
+                xlWorksheet.Cells[intRow, 22] = resMines[i].Budget.HanaDay;
+                xlWorksheet.Cells[intRow, 23] = resMines[i].Budget.NaidDay;
+                xlWorksheet.Cells[intRow, 24] = "";
+                xlWorksheet.Cells[intRow, 25] = resMines[i].Budget.AppMon;
+                xlWorksheet.Cells[intRow, 26] = resMines[i].Budget.HanaMon;
+                xlWorksheet.Cells[intRow, 27] = resMines[i].Budget.NaidMon;
+                xlWorksheet.Cells[intRow, 28] = "";
+                xlWorksheet.Cells[intRow, 29] = resMines[i].Budget.AppYear;
+                xlWorksheet.Cells[intRow, 30] = resMines[i].Budget.HanaYear;
+                xlWorksheet.Cells[intRow, 31] = resMines[i].Budget.NaidYear;
+                xlWorksheet.Cells[intRow, 32] = "";
+                
+            }
+
+
+            xlWorksheet.SaveAs(SheetLoc, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+
+            wb.closeWorkbook();
+            ReleaseObject(xlWorksheet);
+        }
+
     }
 
 }
-
-
-
-
