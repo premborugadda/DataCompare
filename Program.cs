@@ -25,13 +25,19 @@ namespace DataCompare
             //##################################################################################################
             //Initializing variables
 
-            Console.WriteLine(" ***** Reading input parameters ***** ");           
-
-            string homedir, hanaSheetLocation, approvalSheetLocation, 
-                naidSheetLocation, resultSheet, budgetSheetLoctation;            
+            Console.WriteLine(" ***** Reading input parameters ***** ");
+            string homedir, hanaSheetLocation, approvalSheetLocation,
+                naidSheetLocation, resultSheet, budgetSheetLoctation;
             char[] delimiter = { '\t' };
             List<Result> resMines = new List<Result>();
             DataCompare.Report.Report report = new Report.Report();
+            
+            //homedir = "C:\\ValeDataTesting\\";
+            //var MyIni = new IniFile(homedir + "config.ini");
+
+            //var mines = MyIni.IniReadValue("mineNames","env");
+            //var date = MyIni.IniReadValue("reportRunDate","env");
+
 
             string[] mineNames = { "COLEMAN MINE", "COPPER CLIFF MINE", "CREIGHTON MINE", "GARSON MINE", "TOTTEN MINE", "THOMPSON MINE", "OVOID MINE" };
             Double[] dimOMKeys = { 14046, 14048, 14047, 14049, 14050, 77428, 77580 };
@@ -128,7 +134,8 @@ namespace DataCompare
                 resultData.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(toDate));
 
                 resultData.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
-                resultData.Budget.AppMon = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / curDate, 1);
+                resultData.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
+                resultData.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
 
                 resultData.Actual.HanaDay = Helpers.SumOfValues(data, 1.3, mineName, "ACTUAL", Convert.ToDateTime(toDate), Convert.ToDateTime(toDate));
                 resultData.Actual.HanaMon = Helpers.SumOfValues(data, 1.3, mineName, "ACTUAL", Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
@@ -161,7 +168,7 @@ namespace DataCompare
             var objReport = new Report.Report();            
             foreach (string mineName in mineNames)
             {
-                objReport.writeData(resultSheet, mineName, resMines);
+                objReport.writeData(resultSheet, mineName, resMines, toDate);
                 
             }
             

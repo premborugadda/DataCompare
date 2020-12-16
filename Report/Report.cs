@@ -88,7 +88,7 @@ namespace DataCompare.Report
         }
 
 
-        public void writeData(string SheetLoc, string mineName, List<Result> resMines)
+        public void writeData(string SheetLoc, string mineName, List<Result> resMines, string toDate)
         {
             wb = new ExcelWorkbook(SheetLoc);
             var xlWorksheet = wb.openSheet(2);
@@ -102,6 +102,9 @@ namespace DataCompare.Report
             //}
             int iCount = resMines.Count(); 
             int intRow = 3;
+
+            xlWorksheet.Cells[1, 4] = toDate;
+            xlWorksheet.Cells[1, 6] = DateTime.Today;
 
             for (int i = 0; i < iCount; i++)
             {
@@ -125,9 +128,10 @@ namespace DataCompare.Report
                 xlWorksheet.Cells[intRow, 22] = resMines[i].Budget.HanaMon;
                 xlWorksheet.Cells[intRow, 23] = resMines[i].Budget.NaidMon;
                 
-                xlWorksheet.Cells[intRow, 24] = resMines[i].Budget.AppYear;
+                xlWorksheet.Cells[intRow, 24] = resMines[i].Budget.AppYear + resMines[i].Budget.AppMon;
                 xlWorksheet.Cells[intRow, 25] = resMines[i].Budget.HanaYear;
-                xlWorksheet.Cells[intRow, 26] = resMines[i].Budget.NaidYear;                
+                xlWorksheet.Cells[intRow, 26] = resMines[i].Budget.AppYear;
+                xlWorksheet.Cells[intRow, 27] = resMines[i].Budget.NaidYear;                
 
                 intRow++;
 

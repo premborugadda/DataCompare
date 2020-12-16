@@ -67,6 +67,7 @@
     <Compile Include="ApprovalParser\DataParser.cs" />
     <Compile Include="BudgetParser\Budget.cs" />
     <Compile Include="BudgetParser\dataParse.cs" />
+    <Compile Include="Functions\IniFile.cs" />
     <Compile Include="NAIDParser\Costs.cs" />
     <Compile Include="Functions\CsvHelper.cs" />
     <Compile Include="NAIDParser\Env.cs" />

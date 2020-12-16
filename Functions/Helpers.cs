@@ -45,6 +45,14 @@ namespace DataCompare.Functions
             var test1 = data.Where(x => x.mineName.Equals(mineName) && x.budgetMonth.ToLower().Equals(monthName.ToLower())).ToList();
             return Math.Round(test1.Select(y => y.budgetValue).First(), 1);
         }
+
+        public static double BudgetMineYTD(this List<Budget> data, string mineName, int month)
+        {
+            //DateTime monthName = DateTime..CurrentInfo.GetMonthName(month);
+            
+            var test1 = data.Where(x => x.mineName.Equals(mineName) && DateTime.ParseExact(x.budgetMonth, "MMMM", CultureInfo.CurrentCulture).Month < month).ToList();
+            return Math.Round(test1.Select(y => y.budgetValue).Sum(), 1);
+        }
         public static void KillExcel()
         {
             foreach (Process clsProcess in Process.GetProcesses())
