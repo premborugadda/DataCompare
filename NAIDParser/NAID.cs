@@ -87,11 +87,49 @@ namespace DataCompare.NAIDParser
                         m.Production.oreYTDA = wb.getCellValue(i, m.IndexColumn);
                         m.Production.oreYTDB = wb.getCellValue(i, m.IndexColumn + 1);
                     }
+
+                    // Nickel values
+                    if (i == 41)
+                    {
+                        m.Production.nickDayA = wb.getCellValue(i, m.IndexColumn);
+                        m.Production.nickDayB = wb.getCellValue(i, m.IndexColumn + 1);
+                    }
+
+                    if (i == 42)
+                    {
+                        m.Production.nickMTDA = wb.getCellValue(i, m.IndexColumn);
+                        m.Production.nickMTDB = wb.getCellValue(i, m.IndexColumn + 1);
+                    }
+
+                    if (i == 43)
+                    {
+                        m.Production.nickYTDA = wb.getCellValue(i, m.IndexColumn);
+                        m.Production.nickYTDB = wb.getCellValue(i, m.IndexColumn + 1);
+                    }
+
+                    //Copper values
+                    if (i == 47)
+                    {
+                        m.Production.copperDayA = wb.getCellValue(i, m.IndexColumn);
+                        m.Production.copperDayB= wb.getCellValue(i, m.IndexColumn + 1);
+                    }
+
+                    if (i == 48)
+                    {
+                        m.Production.copperMTDA = wb.getCellValue(i, m.IndexColumn);
+                        m.Production.copperMTDB = wb.getCellValue(i, m.IndexColumn + 1);
+                    }
+
+                    if (i == 49)
+                    {
+                        m.Production.copperYTDA = wb.getCellValue(i, m.IndexColumn);
+                        m.Production.copperYTDB = wb.getCellValue(i, m.IndexColumn + 1);
+                    }
                 }
             }
 
 
-            // TODO add populated mine to list
+            
             mines.Add(m);
         }
 

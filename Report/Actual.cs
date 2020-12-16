@@ -19,7 +19,6 @@ namespace DataCompare.Report
         public Double AppMon { get; set; }
         public Double HanaMon { get; set; }
         public Double NaidMon { get; set; }
-
         public Double AppYear { get; set; }
         public Double HanaYear { get; set; }
         public Double NaidYear { get; set; }

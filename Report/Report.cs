@@ -108,28 +108,26 @@ namespace DataCompare.Report
                 xlWorksheet.Cells[intRow, 9] = resMines[i].Actual.AppDay;
                 xlWorksheet.Cells[intRow, 10] = resMines[i].Actual.HanaDay;
                 xlWorksheet.Cells[intRow, 11] = resMines[i].Actual.NaidDay;
-                xlWorksheet.Cells[intRow, 12] = "";
-                xlWorksheet.Cells[intRow, 13] = resMines[i].Actual.AppMon;
-                xlWorksheet.Cells[intRow, 14] = resMines[i].Actual.HanaMon;
-                xlWorksheet.Cells[intRow, 15] = resMines[i].Actual.NaidMon;
-                xlWorksheet.Cells[intRow, 16] = "";
-                xlWorksheet.Cells[intRow, 17] = resMines[i].Actual.AppYear;
-                xlWorksheet.Cells[intRow, 18] = resMines[i].Actual.HanaYear;
-                xlWorksheet.Cells[intRow, 19] = resMines[i].Actual.NaidYear;
-                xlWorksheet.Cells[intRow, 20] = "";
+
+                xlWorksheet.Cells[intRow, 12] = resMines[i].Actual.AppMon;
+                xlWorksheet.Cells[intRow, 13] = resMines[i].Actual.HanaMon;
+                xlWorksheet.Cells[intRow, 14] = resMines[i].Actual.NaidMon;
+
+                xlWorksheet.Cells[intRow, 15] = resMines[i].Actual.AppYear;
+                xlWorksheet.Cells[intRow, 16] = resMines[i].Actual.HanaYear;
+                xlWorksheet.Cells[intRow, 17] = resMines[i].Actual.NaidYear;
                 
-                xlWorksheet.Cells[intRow, 21] = resMines[i].Budget.AppDay;                
-                xlWorksheet.Cells[intRow, 22] = resMines[i].Budget.HanaDay;
-                xlWorksheet.Cells[intRow, 23] = resMines[i].Budget.NaidDay;
-                xlWorksheet.Cells[intRow, 24] = "";
-                xlWorksheet.Cells[intRow, 25] = resMines[i].Budget.AppMon;
-                xlWorksheet.Cells[intRow, 26] = resMines[i].Budget.HanaMon;
-                xlWorksheet.Cells[intRow, 27] = resMines[i].Budget.NaidMon;
-                xlWorksheet.Cells[intRow, 28] = "";
-                xlWorksheet.Cells[intRow, 29] = resMines[i].Budget.AppYear;
-                xlWorksheet.Cells[intRow, 30] = resMines[i].Budget.HanaYear;
-                xlWorksheet.Cells[intRow, 31] = resMines[i].Budget.NaidYear;
-                xlWorksheet.Cells[intRow, 32] = "";
+                xlWorksheet.Cells[intRow, 18] = resMines[i].Budget.AppDay;                
+                xlWorksheet.Cells[intRow, 19] = resMines[i].Budget.HanaDay;
+                xlWorksheet.Cells[intRow, 20] = resMines[i].Budget.NaidDay;
+                
+                xlWorksheet.Cells[intRow, 21] = resMines[i].Budget.AppMon;
+                xlWorksheet.Cells[intRow, 22] = resMines[i].Budget.HanaMon;
+                xlWorksheet.Cells[intRow, 23] = resMines[i].Budget.NaidMon;
+                
+                xlWorksheet.Cells[intRow, 24] = resMines[i].Budget.AppYear;
+                xlWorksheet.Cells[intRow, 25] = resMines[i].Budget.HanaYear;
+                xlWorksheet.Cells[intRow, 26] = resMines[i].Budget.NaidYear;                
 
                 intRow++;
 
