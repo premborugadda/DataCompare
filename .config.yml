@@ -1,0 +1,19 @@
+---
+  dates:
+    - key: from
+      value: 2020-01-01
+
+    - key: to
+      value: 2020-01-01
+
+    - key: yearStartDate
+      value: 2020-01-01
+
+  mines:
+    - mine: COLEMAN MINE
+    - mine: COPPER CLIFF MINE
+    - mine: CREIGHTON MINE
+
+  dimOMKeys:
+    - key: 14046
+    - key: 14048

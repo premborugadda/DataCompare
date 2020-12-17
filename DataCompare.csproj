@@ -68,12 +68,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=9.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>packages\YamlDotNet.9.1.0\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApprovalParser\Approval.cs" />
     <Compile Include="ApprovalParser\DataParser.cs" />
     <Compile Include="BudgetParser\Budget.cs" />
     <Compile Include="BudgetParser\dataParse.cs" />
+    <Compile Include="ConfigLayer\Configuration.cs" />
+    <Compile Include="ConfigLayer\YamlConvert.cs" />
     <Compile Include="Functions\IniFile.cs" />
     <Compile Include="Functions\ReadFileNames.cs" />
     <Compile Include="NAIDParser\Costs.cs" />
@@ -99,6 +104,9 @@
     <Compile Include="Report\Result.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".config.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
