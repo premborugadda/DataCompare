@@ -12,7 +12,7 @@ namespace DataCompare.BudgetParser
     
     private ExcelWorkbook wb;
 
-        public List<Budget> GetValues (string BudgetSheetLoc, string[] mineNames)
+        public List<Budget> GetValues (string BudgetSheetLoc, List<string> mineNames)
         {
             List<Budget> records = new List<Budget>();
             wb = new ExcelWorkbook(BudgetSheetLoc);
