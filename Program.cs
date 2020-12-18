@@ -12,6 +12,7 @@ using DataCompare.NAIDParser;
 using System.Runtime.InteropServices;
 using DataCompare.Report;
 using DataCompare.BudgetParser;
+using DataCompare.ConfigLayer;
 using System.Data;
 using DataCompare.ConfigLayer;
 
@@ -23,6 +24,28 @@ namespace DataCompare
         public static void Main(string[] args)
         {
             Console.WriteLine(" ***** " + DateTime.Now.ToString("h:mm tt") + " ***** Program execution started ***** ");
+
+
+            //##################################################################################################
+            //YAML Config
+            var config = Configuration.Load();
+
+            //var fromDate = config.Dates?.FirstOrDefault(p => p.Key == "from")?.Value;
+            //var toDate = config.Dates?.FirstOrDefault(p => p.Key == "to")?.Value;
+            //var yearStartDate = config.Dates?.FirstOrDefault(p => p.Key == "yearStartDate")?.Value;
+
+            //var mines = config.Mines;
+
+            //var dimOMKeys = config.DimOMKeys;
+            //##################################################################################################
+
+
+
+
+
+
+
+
 
             //##################################################################################################
             //Closing Excel instances           
