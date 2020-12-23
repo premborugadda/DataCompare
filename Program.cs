@@ -28,25 +28,7 @@ namespace DataCompare
 
             //##################################################################################################
             //YAML Config
-            var config = Configuration.Load();
-
-            //var fromDate = config.Dates?.FirstOrDefault(p => p.Key == "from")?.Value;
-            //var toDate = config.Dates?.FirstOrDefault(p => p.Key == "to")?.Value;
-            //var yearStartDate = config.Dates?.FirstOrDefault(p => p.Key == "yearStartDate")?.Value;
-
-            //var mines = config.Mines;
-
-            //var dimOMKeys = config.DimOMKeys;
-            //##################################################################################################
-
-
-
-
-
-
-
-
-
+           
             //##################################################################################################
             //Closing Excel instances           
 
@@ -208,13 +190,13 @@ namespace DataCompare
                 Mine curMine = naid.getMine(mineName);
                 resultData1.ResMineName = mineName;
 
-                resultData1.Actual.AppDay = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(toDate), Convert.ToDateTime(toDate)); ;
-                resultData1.Actual.AppMon = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
-                resultData1.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(prevMonthEndDate));
+                //resultData1.Actual.AppDay = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(toDate), Convert.ToDateTime(toDate)); ;
+                //resultData1.Actual.AppMon = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
+                //resultData1.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(prevMonthEndDate));
 
-                resultData1.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
-                resultData1.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
-                resultData1.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
+                //resultData1.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
+                //resultData1.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
+                //resultData1.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
 
                 resultData1.Actual.HanaDay = Helpers.SumOfValues(data, 1.1, mineName, "ACTUAL", Convert.ToDateTime(toDate), Convert.ToDateTime(toDate));
                 resultData1.Actual.HanaMon = Helpers.SumOfValues(data, 1.1, mineName, "ACTUAL", Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
@@ -256,13 +238,13 @@ namespace DataCompare
                 Mine curMine = naid.getMine(mineName);
                 resultData2.ResMineName = mineName;
 
-                resultData2.Actual.AppDay = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(toDate), Convert.ToDateTime(toDate)); ;
-                resultData2.Actual.AppMon = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
-                resultData2.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(prevMonthEndDate));
+                //resultData2.Actual.AppDay = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(toDate), Convert.ToDateTime(toDate)); ;
+                //resultData2.Actual.AppMon = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
+                //resultData2.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(prevMonthEndDate));
 
-                resultData2.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
-                resultData2.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
-                resultData2.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
+                //resultData2.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
+                //resultData2.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
+                //resultData2.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
 
                 resultData2.Actual.HanaDay = Helpers.SumOfValues(data, 1.2, mineName, "ACTUAL", Convert.ToDateTime(toDate), Convert.ToDateTime(toDate));
                 resultData2.Actual.HanaMon = Helpers.SumOfValues(data, 1.2, mineName, "ACTUAL", Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
