@@ -12,14 +12,14 @@ namespace DataCompare.BudgetParser
     
     private ExcelWorkbook wb;
 
-        public List<Budget> GetValues (string BudgetSheetLoc, List<string> mineNames)
+        public List<Budget> GetValues (string BudgetSheetLoc, List<string> mineNames, int[] reqRows)
         {
             List<Budget> records = new List<Budget>();
             wb = new ExcelWorkbook(BudgetSheetLoc);
             var xlRange = wb.xlRange;
             var rowCount = wb.xlRange.Rows.Count;
             var colCount = wb.xlRange.Columns.Count;
-            int[] reqRows = {15, 12, 13, 14, 19, 27, 33};
+            //int[] reqRows = {15, 12, 13, 14, 33, 27, 19};
 
 
             for (int i = 3; i <= 14; i++)

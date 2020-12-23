@@ -114,9 +114,17 @@ namespace DataCompare
 
             dataParse dt = new dataParse();
             List<Budget> budgetData = new List<Budget>();
-            budgetData = dt.GetValues(budgetSheetLoctation, mineNames);
+            int[] reqRows_ore = { 15, 12, 13, 14, 33, 27, 19 };
+            budgetData = dt.GetValues(budgetSheetLoctation, mineNames, reqRows_ore);
+
+            List<Budget> budgetData1 = new List<Budget>();
+            int[] reqRows_Ni = { 58, 55, 56, 57, 76, 70, 62 };
+            budgetData1 = dt.GetValues(budgetSheetLoctation, mineNames, reqRows_Ni);
+
+            List<Budget> budgetData2 = new List<Budget>();
+            int[] reqRows_cu = { 94, 91, 92, 93, 106, 98, 96};
+            budgetData2 = dt.GetValues(budgetSheetLoctation, mineNames, reqRows_cu);
             
-                       
             //##################################################################################################
             //Reading HANA extract sheet
 
@@ -194,9 +202,9 @@ namespace DataCompare
                 //resultData1.Actual.AppMon = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
                 //resultData1.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(prevMonthEndDate));
 
-                //resultData1.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
-                //resultData1.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
-                //resultData1.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
+                resultData1.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData1, mineName, reportDate.Month) / daysInMonth, 1);
+                resultData1.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData1, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
+                resultData1.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData1, mineName, reportDate.Month), 1);
 
                 resultData1.Actual.HanaDay = Helpers.SumOfValues(data, 1.1, mineName, "ACTUAL", Convert.ToDateTime(toDate), Convert.ToDateTime(toDate));
                 resultData1.Actual.HanaMon = Helpers.SumOfValues(data, 1.1, mineName, "ACTUAL", Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
@@ -242,9 +250,9 @@ namespace DataCompare
                 //resultData2.Actual.AppMon = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
                 //resultData2.Actual.AppYear = Helpers.ApprovalSumOfValues(approvalData, dimOMKeys[i], Convert.ToDateTime(yearStartDate), Convert.ToDateTime(prevMonthEndDate));
 
-                //resultData2.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth, 1);
-                //resultData2.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
-                //resultData2.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData, mineName, reportDate.Month), 1);
+                resultData2.Budget.AppDay = Math.Round(Helpers.BudgetMineValue(budgetData2, mineName, reportDate.Month) / daysInMonth, 1);
+                resultData2.Budget.AppMon = Math.Round((Helpers.BudgetMineValue(budgetData2, mineName, reportDate.Month) / daysInMonth) * curDate, 1);
+                resultData2.Budget.AppYear = Math.Round(Helpers.BudgetMineYTD(budgetData2, mineName, reportDate.Month), 1);
 
                 resultData2.Actual.HanaDay = Helpers.SumOfValues(data, 1.2, mineName, "ACTUAL", Convert.ToDateTime(toDate), Convert.ToDateTime(toDate));
                 resultData2.Actual.HanaMon = Helpers.SumOfValues(data, 1.2, mineName, "ACTUAL", Convert.ToDateTime(fromDate), Convert.ToDateTime(toDate));
